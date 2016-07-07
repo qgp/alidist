@@ -2,6 +2,7 @@ package: pythia
 version: "%(tag_basename)s"
 source: https://github.com/alisw/pythia8
 requires:
+  - lhapdf5
   - lhapdf
   - HepMC
   - boost
@@ -22,6 +23,7 @@ esac
 ./configure --prefix=$INSTALLROOT \
             --enable-shared \
             --with-hepmc2=${HEPMC_ROOT} \
+            --with-lhapdf5=${LHAPDF5_ROOT} \
             --with-lhapdf6=${LHAPDF_ROOT} \
             ${BOOST_ROOT:+--with-boost="$BOOST_ROOT"}
 
@@ -48,7 +50,7 @@ proc ModulesHelp { } {
 set version $PKGVERSION-@@PKGREVISION@$PKGHASH@@
 module-whatis "ALICE Modulefile for $PKGNAME $PKGVERSION-@@PKGREVISION@$PKGHASH@@"
 # Dependencies
-module load BASE/1.0 lhapdf/$LHAPDF_VERSION-$LHAPDF_REVISION ${BOOST_ROOT:+boost/$BOOST_VERSION-$BOOST_REVISION} HepMC/$HEPMC_VERSION-$HEPMC_REVISION
+module load BASE/1.0 lhapdf5/$LHAPDF5_VERSION-$LHAPDF5_REVISION lhapdf/$LHAPDF_VERSION-$LHAPDF_REVISION ${BOOST_ROOT:+boost/$BOOST_VERSION-$BOOST_REVISION} HepMC/$HEPMC_VERSION-$HEPMC_REVISION
 # Our environment
 setenv PYTHIA_ROOT \$::env(BASEDIR)/$PKGNAME/\$version
 setenv PYTHIA8DATA \$::env(PYTHIA_ROOT)/share/Pythia8/xmldoc
