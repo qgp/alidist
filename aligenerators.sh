@@ -11,6 +11,7 @@ requires:
   - ThePEG
   - AGILe
   - Sacrifice
+  - aligenmc
 build_requires:
   - EPOS-test
   - ThePEG-test
